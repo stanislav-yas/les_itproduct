@@ -12,6 +12,7 @@ class _User {
   @Column(unique: true, indexed: true)
   String? email;
 
+  @Serialize(input: true, output: false)
   String? password;
 
   @Column(nullable: true)
@@ -19,4 +20,10 @@ class _User {
 
   @Column(nullable: true)
   String? refreshToken;
+
+  @Column(omitByDefault: true)
+  String? salt;
+
+  @Column(omitByDefault: true)
+  String? hashPassword;
 }

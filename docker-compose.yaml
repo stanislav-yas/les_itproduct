@@ -1,14 +1,23 @@
 version: '3.5'
 
+# 6100 - auth
+# 6101 - db_auth
+# 6200 - data
+# 6201 - db_data
+
 services:
   db_auth:
     container_name: db_auth
     ports:
-      - "5432:5432"
+      - "6101:6101"
     environment:
       - POSTGRES_USER=admin
       - POSTGRES_PASSWORD=root
     image: postgres:14.3-alpine
+    command: 
+      - "postgres"
+      - "-c"
+      - "port=6101"
     volumes:
       - db_auth_vol:/var/lib/postgresql/data/:rw
 

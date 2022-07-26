@@ -9,3 +9,8 @@ services:
       - POSTGRES_USER=admin
       - POSTGRES_PASSWORD=root
     image: postgres:14.3-alpine
+    volumes:
+      - db_auth_vol:/var/lib/postgresql/data/:rw
+
+volumes:
+  db_auth_vol: {}

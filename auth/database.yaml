@@ -1,5 +1,5 @@
 username: admin
 password: root
-host: 192.168.99.101
+host: db_auth
 port: 6101
 databaseName: postgres

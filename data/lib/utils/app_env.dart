@@ -8,8 +8,9 @@ abstract class AppEnv {
       Platform.environment["DB_USERNAME"] ?? "admin";
   static final String dbPassword =
       Platform.environment["DB_PASSWORD"] ?? "root";
-  static final String dbHost = Platform.environment["DB_HOST"] ?? "172.17.0.1";
+  static final String dbHost =
+      Platform.environment["DB_HOST"] ?? "192.168.99.101";
   static final String dbPort = Platform.environment["DB_PORT"] ?? "6201";
   static final String dbDatabaseName =
-      Platform.environment["DB_NAME"] ?? "postgre";
+      Platform.environment["DB_NAME"] ?? "postgres";
 }

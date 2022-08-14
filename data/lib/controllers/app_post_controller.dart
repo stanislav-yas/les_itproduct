@@ -82,11 +82,14 @@ class AppPostController extends ResourceController {
   Future<Response> getPosts(
       @Bind.header(HttpHeaders.authorizationHeader) String header) async {
     try {
-      // final id = AppUtils.getIdFromHeader(header);
-      // final user = await managedContext.fetchObjectWithID<User>(id);
-      // user?.removePropertiesFromBackingMap(
-      //     [AppConst.accessToken, AppConst.refreshToken]);
-      return AppResponse.ok(message: "Успешное получение постов");
+      final id = AppUtils.getIdFromHeader(header);
+      final qGetPosts = Query<Post>(managedContext)
+        ..where((x) => x.author?.id).equalTo(id);
+      final List<Post> posts = await qGetPosts.fetch();
+      if (posts.isEmpty) {
+        return Response.notFound();
+      }
+      return Response.ok(posts);
     } catch (error) {
       return AppResponse.serverError(error,
           message: "Ошибка получения постов!!!");

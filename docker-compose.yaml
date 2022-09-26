@@ -58,6 +58,24 @@ services:
     networks:
       - internal_net
 
+  data:
+    build: ./data
+    container_name: data
+    ports:
+      - 6200:6200
+    environment:
+      - SECRET_KEY=SECRET_KEY
+      - PORT=6100
+      - DB_USERNAME=admin
+      - DB_PASSWORD=root
+      - DB_HOST=db_data
+      - DB_PORT=6201
+      - DB_NAME=postgres
+    depends_on:
+      - db_data
+    networks:
+      - internal_net
+
 volumes:
   db_auth_vol: {}
   db_data_vol: {}

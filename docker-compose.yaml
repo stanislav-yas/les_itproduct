@@ -73,8 +73,8 @@ services:
       - internal_net
 
   nginx:
+    build: ./nginx
     container_name: nginx
-    image: nginx:1.23.1-alpine
     networks:
       - internal_net
     ports:

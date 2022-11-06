@@ -33,7 +33,7 @@ class AppAuthController extends ResourceController {
             "Пользователь ${user.username} не найден", []);
       }
       final requestHasPassword =
-          AuthUtility.generatePasswordHash(user.password!, findUser.salt!);
+          generatePasswordHash(user.password!, findUser.salt!);
       if (requestHasPassword == findUser.hashPassword) {
         await _updateTokens(findUser.id ?? -1, managedContext);
         final newUser =
@@ -58,8 +58,8 @@ class AppAuthController extends ResourceController {
         ),
       );
     }
-    final salt = AuthUtility.generateRandomSalt();
-    final hashPassword = AuthUtility.generatePasswordHash(user.password!, salt);
+    final salt = generateRandomSalt();
+    final hashPassword = generatePasswordHash(user.password!, salt);
 
     try {
       late final int id;

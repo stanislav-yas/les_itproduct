@@ -61,13 +61,11 @@ class AppUserController extends ResourceController {
         ..returningProperties((table) => [table.salt, table.hashPassword]);
       final findUser = await qFindUser.fetchOne();
       final salt = findUser?.salt ?? "";
-      final oldPasswordHash =
-          AuthUtility.generatePasswordHash(oldPassword, salt);
+      final oldPasswordHash = generatePasswordHash(oldPassword, salt);
       if (oldPasswordHash != findUser?.hashPassword) {
         return AppResponse.badRequest(message: "Wrong password");
       }
-      final newHashPassword =
-          AuthUtility.generatePasswordHash(newPassword, salt);
+      final newHashPassword = generatePasswordHash(newPassword, salt);
       final qUpdateUser = Query<User>(managedContext)
         ..where((x) => x.id).equalTo(id)
         ..values.hashPassword = newHashPassword;

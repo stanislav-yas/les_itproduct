@@ -8,7 +8,7 @@ class ProdAppConfig implements AppConfig {
   String get baseUrl => "http://192.168.99.101/";
 
   @override
-  String get host => throw Environment.prod;
+  String get host => Environment.prod;
 }
 
 @Singleton(as: AppConfig)
@@ -18,7 +18,7 @@ class DevAppConfig implements AppConfig {
   String get baseUrl => "localhost";
 
   @override
-  String get host => throw Environment.dev;
+  String get host => Environment.dev;
 }
 
 @Singleton(as: AppConfig)
@@ -28,5 +28,5 @@ class TestAppConfig implements AppConfig {
   String get baseUrl => "_";
 
   @override
-  String get host => throw Environment.test;
+  String get host => Environment.test;
 }

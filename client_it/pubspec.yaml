@@ -29,6 +29,7 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  flutter_bloc: ^8.1.1
   freezed: ^2.2.1
   freezed_annotation: ^2.2.0
   get_it: ^7.2.0

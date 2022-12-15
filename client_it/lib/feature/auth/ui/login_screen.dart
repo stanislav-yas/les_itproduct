@@ -1,3 +1,5 @@
+import 'package:client_it/app/ui/components/app_text_button.dart';
+import 'package:client_it/app/ui/components/app_text_field.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -21,38 +23,34 @@ class LoginScreen extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                TextFormField(
-                  validator: emptyValidator,
-                  maxLines: 1,
-                  controller: controllerLogin,
-                  decoration: const InputDecoration(
-                    labelText: "логин",
-                    border: OutlineInputBorder(),
-                  ),
-                ),
+                AppTextField(controller: controllerLogin, labelText: "логин"),
                 const SizedBox(
                   height: 16,
                 ),
-                TextFormField(
-                  validator: emptyValidator,
-                  maxLines: 1,
-                  controller: controllerPassword,
-                  decoration: const InputDecoration(
+                AppTextField(
+                    controller: controllerPassword,
                     labelText: "пароль",
-                    border: OutlineInputBorder(),
-                  ),
+                    obscureText: true),
+                const SizedBox(
+                  height: 16,
+                ),
+                AppTextButton(
+                  onPressed: () => {
+                    if (formKey.currentState?.validate() == true)
+                      {print("войти pressed")}
+                  },
+                  text: "войти",
                 ),
                 const SizedBox(
                   height: 16,
                 ),
-                ElevatedButton(
+                AppTextButton(
+                  backgroundColor: Colors.blueGrey,
                   onPressed: () => {
-                    if (formKey.currentState?.validate() != null) {print("OK")}
+                    if (formKey.currentState?.validate() == true)
+                      {print("регистрация pressed")}
                   },
-                  style: ButtonStyle(
-                      fixedSize: MaterialStateProperty.all<Size>(
-                          const Size(double.maxFinite, 40))),
-                  child: const Text("Войти"),
+                  text: "регистрация",
                 ),
               ],
             ),
@@ -60,12 +58,5 @@ class LoginScreen extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  String? emptyValidator(String? value) {
-    if (value?.isEmpty == null) {
-      return "Обязательное поле";
-    }
-    return null;
   }
 }

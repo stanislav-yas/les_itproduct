@@ -27,7 +27,7 @@ class AuthBuilder extends StatelessWidget {
       },
       listener: (context, state) {
         state.whenOrNull(
-          error: (error) => _showSnackBar,
+          error: (error) => _showSnackBar(context, error),
         );
       },
       listenWhen: (previous, current) =>

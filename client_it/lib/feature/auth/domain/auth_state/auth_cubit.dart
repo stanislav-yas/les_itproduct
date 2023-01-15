@@ -25,4 +25,20 @@ class AuthCubit extends Cubit<AuthState> {
       rethrow;
     }
   }
+
+  Future<void> signUp({
+    required String username,
+    required String password,
+    required String email,
+  }) async {
+    emit(AuthState.waiting());
+    try {
+      final UserEntity userEntity = await authRepository.signUp(
+          username: username, password: password, email: email);
+      emit(AuthState.authorized(userEntity));
+    } catch (error) {
+      emit(AuthState.error(error));
+      rethrow;
+    }
+  }
 }
